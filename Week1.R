@@ -19,3 +19,8 @@ data$Day.Time <- paste(data$Date, data$Time, sep = " ")
 # reformats the time points (including date) back into the "Time" column as POSIXlt-format
 data$Time <- strptime(data$Day.Time, format = "%Y-%m-%d %H:%M:%S")
 
+with(data, hist(Global_active_power, main = "Global Active Power", col = heat.colors(1), xlab= "Global Active Power kilowatts"))
+
+dev.copy(png, file = "plot1.png", width=480, height=480); dev.off()
+
+?hist
