@@ -22,10 +22,12 @@ data$Day.Time <- paste(data$Date, data$Time, sep = " ")
 # reformats the time points (including date) back into the "Time" column as POSIXlt-format
 data$Time <- strptime(data$Day.Time, format = "%Y-%m-%d %H:%M:%S")
 
-# creates the plot
-with(data, hist(Global_active_power, main = "Global Active Power", col = heat.colors(1), xlab= "Global Active Power kilowatts"))
+# creates the plot without any point or lines
+with(data, plot(Time, Global_active_power, pch=NA_integer_, ylab = "Global Active Power (kilowatts)"))
 
-# print the plot to a file
-dev.copy(png, file = "plot1.png", width=480, height=480); dev.off()
+# adds lines to the plot
+with(data, lines(Time, Global_active_power))
 
-?hist
+# prints the plot to a file
+dev.copy(png, file = "plot2.png", width=480, height=480); dev.off()
+
