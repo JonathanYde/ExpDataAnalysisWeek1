@@ -8,10 +8,13 @@ require <- function(x) {if (!base::require(x, character.only = TRUE)) {install.p
 
 
 # read the data-file
-data <- read.table("household_power_consumption.txt", sep = ";", header=TRUE)
+all.data <- read.table("household_power_consumption.txt", sep = ";", header=TRUE)
 
 # reformats the dates into date formats
-data$Date <- as.Date(data$Date)
+all.data$Date <- as.Date(all.data$Date)
+
+# subsets the dataframe by the specified dates
+data <- subset(all.data, Date == "2007-02-01" || Date == "2007-02-02")
 
 # concatenates the dates and timepoints into a new column "Day.Time"
 data$Day.Time <- paste(data$Date, data$Time, sep = " ")
